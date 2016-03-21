@@ -6,11 +6,41 @@
   "scripts": {
     "commit": "git-cz"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasaid/edm_generator.git"
+  },
   "author": "Chris Lucas <christopher.lucas11@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucasaid/edm_generator/issues"
+  },
+  "homepage": "https://github.com/lucasaid/edm_generator#readme",
   "devDependencies": {
     "commitizen": "2.7.3",
-    "cz-conventional-changelog": "1.1.5"
+    "cz-conventional-changelog": "1.1.5",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "3.1.0",
+    "gulp-cat": "0.3.3",
+    "gulp-connect": "3.2.0",
+    "gulp-email-builder": "1.0.4",
+    "gulp-env": "0.4.0",
+    "gulp-imagemin": "2.4.0",
+    "gulp-jade": "1.1.0",
+    "gulp-load-plugins": "1.2.0",
+    "gulp-open": "1.0.0",
+    "gulp-prompt": "0.1.2",
+    "gulp-rename": "1.2.2",
+    "gulp-replace": "0.5.4",
+    "gulp-sass": "2.2.0",
+    "gulp-util": "3.0.7",
+    "gulp-wait": "0.0.2",
+    "gulp-watch": "4.3.5",
+    "merge-stream": "1.0.0",
+    "openport": "0.0.4",
+    "require-dir": "0.3.0",
+    "vinyl-ftp": "0.4.5",
+    "vinyl-paths": "2.1.0"
   },
   "config": {
     "commitizen": {
