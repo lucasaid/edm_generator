@@ -33,6 +33,20 @@ function getTask(task) {
     return require('./gulp-tasks/' + task)(gulp, plugins, params);
 }
 
+gulp.task('askName', getTask('askName'));
+
+/*
+  Runs the eDM builder, allowing you to select a pre built template to build your eDM.
+*/
+gulp.task('build', [
+    'askName'
+    // 'getTemplate',
+    // 'copy',
+    // 'genConfig',
+    // 'variables',
+    // 'clean:variables'
+]);
+
 
 /*
   Display Help
