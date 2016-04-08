@@ -45,6 +45,8 @@ gulp.task('clean:variables', ['askName','getTemplate','copyFiles','checkVariable
 
 
 gulp.task('getEdm', getTask('getEdm'));
+gulp.task('getPort', ['getEdm'], getTask('getPort'));
+gulp.task('getLivePort', ['getEdm','getPort'], getTask('getLivePort'));
 
 
 /*
@@ -66,8 +68,8 @@ gulp.task('build', [
 gulp.task('run', [
     'loadFunctions',
     'getEdm',
-    // 'getPort',
-    // 'getLivePort',
+    'getPort',
+    'getLivePort',
     // 'init',
     // 'connect',
     // 'watch',
