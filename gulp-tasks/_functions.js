@@ -1,7 +1,5 @@
-var fs = require('fs');
-var path = require('path');
-var op = require('openport');
-module.exports = function (gulp, $) {
+
+module.exports = function () {
     return function () {
 
         GLOBAL.getFolders = function(dir) {

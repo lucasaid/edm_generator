@@ -1,4 +1,4 @@
-module.exports = function (gulp, $) {
+module.exports = function () {
     return function () {
       console.log();
       console.log($.util.colors.red("EDM BUILDER HELP"));

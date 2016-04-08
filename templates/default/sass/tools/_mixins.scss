@@ -52,7 +52,7 @@
 \*------------------------------------*/
 
 // Insert a background image from a given file name
-// eg: 'logo-klyp.png'
+// eg: 'logo.png'
 @mixin bg( $bg:none) {
 	@if $bg != 'none' {
 		background-image:url("/images/#{$bg}");

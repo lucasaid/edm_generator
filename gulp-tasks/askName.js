@@ -1,8 +1,7 @@
-var fs = require('fs');
 /*
   Ask user for a name for the eDM being generated and create directory if the directory does not exist.
 */
-module.exports = function (gulp, $) {
+module.exports = function () {
     return function () {
       return gulp.src('')
           .pipe($.prompt.prompt({

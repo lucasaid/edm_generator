@@ -1,7 +1,7 @@
 /*
   List templates available and get user to select which template to use for the EDM.
 */
-module.exports = function (gulp, $) {
+module.exports = function () {
     return function () {
       var pattern = './templates/';
       var templates = getFolders(pattern);
