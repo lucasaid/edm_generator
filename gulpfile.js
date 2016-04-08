@@ -40,6 +40,8 @@ gulp.task('askName', getTask('askName'));
 gulp.task('getTemplate', ['askName'], getTask('getTemplate'));
 gulp.task('copyFiles', ['askName','getTemplate'], getTask('copyFiles'));
 gulp.task('genConfig', ['askName','getTemplate','copyFiles'], getTask('genConfig'));
+gulp.task('checkVariables', ['askName','getTemplate','copyFiles','genConfig'], getTask('checkVariables'));
+gulp.task('clean:variables', ['askName','getTemplate','copyFiles','checkVariables'], getTask('cleanVariables'));
 
 /*
   Runs the eDM builder, allowing you to select a pre built template to build your eDM.
@@ -50,8 +52,8 @@ gulp.task('build', [
     'getTemplate',
     'copyFiles',
     'genConfig',
-    // 'variables',
-    // 'clean:variables'
+    'checkVariables',
+    'clean:variables'
 ]);
 
 
