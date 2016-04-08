@@ -25,6 +25,7 @@ GLOBAL.params = {
     edmLivePort: 35729,
     s3BucketUrl: process.env.AWS_BUCKET_URL,
     latestRound: 1,
+    defaultBrowser: 'chrome',
     previoudRound: 0
 };
 
@@ -63,6 +64,7 @@ gulp.task('init', ['getEdm', 'getPort', 'getLivePort'], function() {
 
 gulp.task('connect', ['getEdm','getPort', 'getLivePort', 'init'], getTask('connect'));
 gulp.task('watch', ['getEdm','getPort', 'getLivePort', 'init', 'connect'], getTask('watch'));
+gulp.task('openBrowser', ['getEdm','getPort', 'getLivePort', 'init', 'connect', 'watch'], getTask('openBrowser'));
 
 /*
   Runs the eDM builder, allowing you to select a pre built template to build your eDM.
@@ -88,7 +90,7 @@ gulp.task('run', [
     'init',
     'connect',
     'watch',
-    // 'openBrowser'
+    'openBrowser'
 ]);
 
 /*
