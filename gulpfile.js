@@ -43,6 +43,10 @@ gulp.task('genConfig', ['askName','getTemplate','copyFiles'], getTask('genConfig
 gulp.task('checkVariables', ['askName','getTemplate','copyFiles','genConfig'], getTask('checkVariables'));
 gulp.task('clean:variables', ['askName','getTemplate','copyFiles','checkVariables'], getTask('cleanVariables'));
 
+
+gulp.task('getEdm', getTask('getEdm'));
+
+
 /*
   Runs the eDM builder, allowing you to select a pre built template to build your eDM.
 */
@@ -56,6 +60,19 @@ gulp.task('build', [
     'clean:variables'
 ]);
 
+/*
+  Sets up a local server to view the eDM and compiles and watches the files.
+*/
+gulp.task('run', [
+    'loadFunctions',
+    'getEdm',
+    // 'getPort',
+    // 'getLivePort',
+    // 'init',
+    // 'connect',
+    // 'watch',
+    // 'openBrowser'
+]);
 
 /*
   Display Help
