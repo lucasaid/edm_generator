@@ -62,6 +62,7 @@ gulp.task('init', ['getEdm', 'getPort', 'getLivePort'], function() {
 });
 
 gulp.task('connect', ['getEdm','getPort', 'getLivePort', 'init'], getTask('connect'));
+gulp.task('watch', ['getEdm','getPort', 'getLivePort', 'init', 'connect'], getTask('watch'));
 
 /*
   Runs the eDM builder, allowing you to select a pre built template to build your eDM.
@@ -86,7 +87,7 @@ gulp.task('run', [
     'getLivePort',
     'init',
     'connect',
-    // 'watch',
+    'watch',
     // 'openBrowser'
 ]);
 
