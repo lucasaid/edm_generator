@@ -1,10 +1,8 @@
 var fs = require('fs');
 var path = require('path');
 var op = require('openport');
-module.exports = function (gulp, plugins) {
+module.exports = function (gulp, $) {
     return function () {
-
-
 
         GLOBAL.getFolders = function(dir) {
             return fs.readdirSync(dir)
@@ -27,10 +25,10 @@ module.exports = function (gulp, plugins) {
                         console.log(err);
                         return;
                     }
-                    params.campaignPort = port;
+                    params.edmPort = port;
                 }
             );
-        }(params.campaignPort);
+        }(params.edmPort);
 
 
 

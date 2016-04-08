@@ -1,0 +1,39 @@
+/*------------------------------------*\
+    #Colour
+\*------------------------------------*/
+
+// Add percentage of white to a color
+@function tint($color, $percent){
+	@return mix(white, $color, $percent);
+}
+
+// Add percentage of black to a color
+@function shade($color, $percent){
+	@return mix(black, $color, $percent);
+}
+
+
+
+
+
+/*------------------------------------*\
+    #Units
+\*------------------------------------*/
+
+// Strip units from a given value if not unitless
+@function strip-unit($value) {
+	@if unitless($value) { @return $value; }
+	@else { @return $value /($value * 0 + 1); }
+}
+
+// Convert pixels to ems
+// eg. for a relational value of 12px write em(12) when the parent is 16px
+// if the parent font-size is different to the default size, pass that size to the argument as well
+@function em($value:$font-size-base, $base:$font-size-base) {
+	@return (strip-unit($value) / strip-unit($base)) * 1em;
+}
+
+// Convert pixels to rems
+@function rem($value:$font-size-base, $base:$font-size-base) {
+	@return (strip-unit($value) / strip-unit($base)) * 1rem;
+}

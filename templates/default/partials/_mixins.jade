@@ -1,0 +1,13 @@
+mixin gutter(width)
+    td(width=width class="gutter") &nbsp;
+
+
+mixin spacer(width, height)
+    if height
+        img.img-fix(src="img/spacer-10x10.gif" alt="" width=width height=height)
+    else
+        img.img-fix(src="img/spacer-10x10.gif" alt="" width=width height=width)
+    
+mixin spacergutter(width, height)
+    td.gutter(width=width) 
+        +spacer(width, height)

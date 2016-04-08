@@ -1,0 +1,108 @@
+@media yahoo {
+    /* Fix centering issue in Yahoo mail */
+    .backgroundTable > tbody > tr > td {
+        display: block;
+        float: none;
+        margin: 0 auto;
+        max-width: 640px;
+    }
+}
+
+@media only screen {
+    /* Outlook 07, 10 Padding issue fix. Bring inline: No.*/
+    table td {
+        border-collapse: collapse;
+    }
+
+    /* Resets all apple links to desired colour. Bring inline: No.*/
+    a[href^="x-apple-data-detectors"],
+    a[href^="tel"],
+    a[href^="sms"] {
+        text-decoration: none;
+        color: $sneakyblack;
+        /* or whatever your want */
+        pointer-events: none;
+        cursor: default;
+    }
+}
+/* ----------------- Responsive styles ----------------- */
+@media only screen and (max-width: 640px) {
+    table[class~=responsive] {
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    td[class~=responsive-margins] {
+        width: 82% !important;
+        overflow: hidden !important;
+    }
+
+    img[class~=img-fluid] {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    table[class~=fullwidth-only] {
+        display: none !important;
+    }
+
+    table[class~=mob-center] {
+        display: block;
+        float: none;
+        margin: 0 auto !important;
+    }
+
+    table[class~=mob-center] td {
+        text-align: center !important;
+    }
+
+    table[class~=mob-center] img {
+        display: inline-block;
+    }
+
+    table[class~=mob-txt-center] td {
+        text-align: center !important;
+    }
+
+    td[class~=mob-hidden-margin] {
+        width: 0 !important;
+        overflow: hidden;
+    }
+
+    td[class~=mob-hidden-margin] img {
+        width: 0 !important;
+    }
+
+    .gmailFix {
+        min-width: inherit !important;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    td[class~=img-fluid-sml] img {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    td[class~=hidden] {
+        display: none !important;
+    }
+
+    td[class~=gutter] {
+        width: 9% !important;
+    }
+
+    td[class~=content] {
+        width: 82% !important;
+    }
+
+    td[class~=title] img {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .inline-divider {
+        display: none;
+    }
+}
+/* ----------------- Responsive styles ----------------- */

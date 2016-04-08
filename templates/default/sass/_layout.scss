@@ -1,0 +1,165 @@
+
+body {
+     font-size: $font-size-base;
+     color: $black;
+}
+
+/* Based on The MailChimp Reset INLINE: Yes. */
+/* Client-specific Styles */
+
+ /* Force Outlook to provide a "view in browser" menu link. */
+#outlook a {
+    padding: 0;
+}
+
+/* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/
+.outlook2013 {
+    font-size: 1px;
+    line-height: 1px;
+}
+
+ /* Force Hotmail to display emails at full width */
+.ExternalClass {
+    width: 100%;
+}
+
+ /* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
+.ExternalClass {
+    p, span, font, td, div, * {
+        line-height: 131%;
+    }
+}
+
+ /* Force Gmail App to scale down email proportionally */
+.gmailFix {
+    min-width: 600px;
+}
+
+body {
+    width: 100% !important;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Some sensible defaults for images
+Bring inline: Yes. */
+img {
+    outline: none;
+    text-decoration: none;
+    -ms-interpolation-mode: bicubic;
+}
+a img {
+    border: none;
+}
+
+/* Yahoo paragraph fix
+Bring inline: Yes. */
+p {
+    margin: 0;
+    margin-bottom: 1em;
+}
+sup {
+    line-height: 0px;
+}
+
+/* Remove spacing around Outlook 07, 10 tables - Bring inline: Yes */
+table {
+    border-collapse: collapse;
+    mso-table-lspace: 0pt;
+    mso-table-rspace: 0pt;
+}
+
+/* Styling your links has become much simpler with the new Yahoo.  In fact, it falls in line with the main credo of styling in email and make sure to bring your styles inline.  Your link colors will be uniform across clients when brought inline. - Bring inline: Yes. */
+a {
+    color: $primary-color;
+}
+
+.backgroundTable {
+    margin: 0;
+    padding: 0;
+    width: 100% !important;
+    line-height: 100% !important;
+}
+
+.bg-black {
+    background-color: $black;
+}
+.bg-grey {
+    background-color: $silver;
+}
+.bg-white {
+    background-color: $white;
+}
+
+.bg-black td {
+    color: $white;
+}
+.bg-grey, .bg-white {
+    td {
+        color: $black;
+    }
+}
+
+.black-HR-top {
+    border-top: 1px solid $black;
+}
+.black-HR-btm {
+    border-bottom: 1px solid $black;
+}
+
+.img-fix {
+    display: block;
+}
+
+.nobr {
+    white-space: nowrap;
+}
+
+td {
+    font: normal 13px/180px Arial, Verdana, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    font-family: Arial, Verdana, sans-serif;
+    text-align: left;
+}
+
+.txt-sml {
+    font: normal 12px/16px Arial, Verdana, sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    font-family: Arial, Verdana, sans-serif;
+    margin: 0;
+}
+
+.txt-lrg {
+    font: normal 18px/22px Arial, Verdana, sans-serif;
+    font-size: 18px;
+    line-height: 22px;
+    font-family: Arial, Verdana, sans-serif;
+}
+
+.txt-center {
+    text-align: center;
+}
+.txt-right {
+    text-align: right;
+}
+
+.preheader {
+    display: none !important;
+    visibility: hidden!important;
+    font-size: 1px !important;
+    line-height: 1px !important;
+    color: $black !important;
+}
+
+.title a {
+    color: $black;
+    text-decoration: none;
+}
+
+.online td {
+    border-top: 3px solid $primary-color;
+}

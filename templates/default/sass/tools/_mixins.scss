@@ -1,0 +1,266 @@
+/*------------------------------------*\
+    #Units
+\*------------------------------------*/
+
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1);
+}
+
+@mixin rem($property, $values) {
+  $px : ();
+  $rem: ();
+
+  @each $value in $values {
+
+    @if $value == 0 or $value == auto {
+      $px : append($px , $value);
+      $rem: append($rem, $value);
+    }
+
+    @else {
+      $unit: unit($value);
+      $val: parseInt($value);
+
+      @if $unit == "px" {
+        $px : append($px,  $value);
+        $rem: append($rem, ($val / strip_unit($font-size-base) + rem));
+      }
+
+      @if $unit == "rem" {
+        $px : append($px,  ($val * strip_unit($font-size-base) + px));
+        $rem: append($rem, $value);
+      }
+    }
+  }
+
+  @if length($px) > 0 and length($rem) > 0 {
+    @if $px == $rem {
+      #{$property}: $px;
+    } @else {
+      #{$property}: $px;
+      #{$property}: $rem;
+    }
+  }
+}
+
+
+
+
+
+/*------------------------------------*\
+    #Backgrounds
+\*------------------------------------*/
+
+// Insert a background image from a given file name
+// eg: 'logo-klyp.png'
+@mixin bg( $bg:none) {
+	@if $bg != 'none' {
+		background-image:url("/images/#{$bg}");
+	} @else {
+		background-image:none;
+	}
+}
+
+// Insert an SVG background, falling back to a PNG of that name
+@mixin svg( $svg-name, $svg-width, $svg-height ) {
+	position: relative;
+	width: em($svg-width);
+	height: em($svg-height);
+
+	// start with fallback png
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-size: 100% auto;
+		background-repeat: no-repeat;
+		@include bg($svg-name + ".png");
+	}
+
+	// overwrite with svg if exists [requires modernizr svg class check]
+	.svg & {
+		&:before {
+			background-image: url("/images/#{$svg-name}.svg");
+		}
+	}
+}
+
+// Creates a linear gradient from one colour to the other
+// with an optional blend position percentage
+@mixin gradient( $startColour: $c-white, $endColour: transparent, $percentage: 50% ) {
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijc1JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+		background: -moz-linear-gradient(top,  $startColour 0%, $startColour $percentage, $endColour 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$startColour), color-stop($percentage,$startColour), color-stop(100%,$endColour)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  $startColour 0%,$startColour $percentage,$endColour 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  $startColour 0%,$startColour $percentage,$endColour 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  $startColour 0%,$startColour $percentage,$endColour 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  $startColour 0%,$startColour $percentage,$endColour 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$startColour', endColorstr='#00ffffff',GradientType=0 ); /* IE6-8 */
+}
+
+
+
+/*------------------------------------*\
+    #Layout
+\*------------------------------------*/
+
+// Set a height and line-height at the same time
+@mixin line-and-height($y, $isImportant:false) {
+	@if $isImportant {
+		height: $y !important;
+		line-height: $y !important;
+	}	@else {
+		height: $y;
+		line-height: $y;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    #Animation
+\*------------------------------------*/
+@mixin transition ($properties...) {
+	@if length($properties) >= 1 {
+		@include prefixer(transition, $properties, webkit moz ms o spec);
+	}
+
+	@else {
+		$properties: all 160ms ease-in-out 0s;
+		@include prefixer(transition, $properties, webkit moz ms o spec);
+	}
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+
+
+
+
+/*------------------------------------*\
+    #Shapes
+\*------------------------------------*/
+@mixin triangle($width, $dir, $color) {
+  @if $dir == up {
+    width: 0;
+    height: 0;
+    border-left: $width/2 solid transparent;
+    border-right: $width/2 solid transparent;
+    border-bottom: $width/2 solid $color;
+  } @else if $dir == down {
+    width: 0;
+    height: 0;
+    border-left: $width/2 solid transparent;
+    border-right: $width/2 solid transparent;
+    border-top: $width/2 solid $color;
+  } @else if $dir == right {
+    width: 0;
+    height: 0;
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+    border-left: $width solid $color;
+  } @else if $dir == left {
+    width: 0;
+    height: 0;
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+    border-right: $width solid $color;
+  }
+}
+
+
+
+
+
+/*------------------------------------*\
+    #Forms
+\*------------------------------------*/
+@mixin placeholder-text() {
+	::-webkit-input-placeholder {
+		@content;
+	}
+	:-moz-placeholder { /* Firefox 18- */
+		@content;
+	}
+	::-moz-placeholder {  /* Firefox 19+ */
+		@content;
+	}
+	:-ms-input-placeholder {
+		@content;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    #Fonts
+\*------------------------------------*/
+@mixin fontify($font-family:$font, $font-name:$font-family, $font-weight:400, $font-path:'/fonts/') {
+	@font-face {
+	  font-family: "#{$font-family}";
+	  font-style: normal;
+	  font-weight: $font-weight;
+	  src: url("#{$font-path}#{$font-name}.eot?") format("eot"), url("#{$font-path}#{$font-name}.woff") format("woff"), url("#{$font-path}#{$font-name}.ttf") format("truetype");
+	}
+}
+
+/*------------------------------------*\
+    #Opacity
+\*------------------------------------*/
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+
+
+/*------------------------------------*\
+    #Breakpoints
+    Mobile-first principles dictate that we use breakpoints to
+    progressively enhance and build on top of the mobile styles.
+\*------------------------------------*/
+
+@mixin breakpoint($point) {
+  @if $point == large {
+  	@media (min-width: 64.063em) { @content; }
+  }
+  @else if $point == medium {
+    @media (min-width: 40.063em) { @content; }
+  }
+
+  @else {
+  	@content;
+  }
+}
+
+/*------------------------------------*\
+    #Vertical Aligning
+\*------------------------------------*/
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

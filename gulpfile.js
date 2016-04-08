@@ -34,13 +34,15 @@ function getTask(task) {
 }
 
 gulp.task('askName', getTask('askName'));
+gulp.task('getTemplate', ['askName'], getTask('getTemplate'));
 
 /*
   Runs the eDM builder, allowing you to select a pre built template to build your eDM.
 */
 gulp.task('build', [
-    'askName'
-    // 'getTemplate',
+    'loadFunctions',
+    'askName',
+    'getTemplate',
     // 'copy',
     // 'genConfig',
     // 'variables',
