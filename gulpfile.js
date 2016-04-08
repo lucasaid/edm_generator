@@ -36,6 +36,10 @@ function getTask(task) {
     return require('./gulp-tasks/' + task)();
 }
 
+gulp.task('compress:images', getTask('images'));
+gulp.task('compile:sass', getTask('sass'));
+gulp.task('compile:jade', getTask('jade'));
+
 gulp.task('askName', getTask('askName'));
 gulp.task('getTemplate', ['askName'], getTask('getTemplate'));
 gulp.task('copyFiles', ['askName','getTemplate'], getTask('copyFiles'));
@@ -48,11 +52,6 @@ gulp.task('getEdm', getTask('getEdm'));
 gulp.task('getPort', ['getEdm'], getTask('getPort'));
 gulp.task('getLivePort', ['getEdm','getPort'], getTask('getLivePort'));
 
-
-gulp.task('compress:images', getTask('images'));
-gulp.task('compile:sass', getTask('sass'));
-gulp.task('compile:jade', getTask('jade'));
-
 /*
   Runs all compiling tasks.
 */
@@ -61,6 +60,8 @@ gulp.task('init', ['getEdm', 'getPort', 'getLivePort'], function() {
     gulp.run('compile:jade');
     gulp.run('compress:images');
 });
+
+gulp.task('connect', ['getEdm','getPort', 'getLivePort', 'init'], getTask('connect'));
 
 /*
   Runs the eDM builder, allowing you to select a pre built template to build your eDM.
@@ -84,7 +85,7 @@ gulp.task('run', [
     'getPort',
     'getLivePort',
     'init',
-    // 'connect',
+    'connect',
     // 'watch',
     // 'openBrowser'
 ]);
