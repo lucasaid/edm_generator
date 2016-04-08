@@ -25,7 +25,7 @@ GLOBAL.params = {
     edmLivePort: 35729,
     s3BucketUrl: process.env.AWS_BUCKET_URL,
     latestRound: 1,
-    defaultBrowser: 'chrome',
+    defaultBrowser: process.env.DEFAULT_BROWSER,
     previoudRound: 0
 };
 
