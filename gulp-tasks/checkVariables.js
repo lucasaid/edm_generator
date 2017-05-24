@@ -15,7 +15,7 @@ module.exports = function () {
                   }, function(variableFile) {
                       if (variableFile.file != 'none') {
                           $.util.log($.util.colors.green('Using variable file: ' + variableFile.file + '.'));
-                          return gulp.src(params.edmPath + '/src/partials/variables/' + variableFile.file).pipe($.rename('_variables.jade')).pipe(gulp.dest(params.edmPath + '/src/partials/'));
+                          return gulp.src(params.edmPath + '/src/partials/variables/' + variableFile.file).pipe($.rename('_variables.nunjucks')).pipe(gulp.dest(params.edmPath + '/src/partials/'));
                       }
                   }));
           }

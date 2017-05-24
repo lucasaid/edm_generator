@@ -1,0 +1,17 @@
+{% macro gutter(width) %}
+  <td width="{{width}}" class="gutter">&nbsp;</td>
+{% endmacro %}
+
+{% macro spacer(width, height) %}
+  {%if height %}
+      <img class="img-fix" src="img/spacer-10x10.gif" alt="" width="{{width}}" height="{{height}}" />
+  {% else %}
+      <img class="img-fix" src="img/spacer-10x10.gif" alt="" width="{{width}}" height="{{width}}" />
+  {% endif %}
+{% endmacro %}
+
+{% macro spacergutter(width, height) %}
+    <td class="gutter" width="{{width}}">
+      {{ spacer(width, height) }}
+    </td>
+{% endmacro %}

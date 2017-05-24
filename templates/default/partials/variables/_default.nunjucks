@@ -1,0 +1,9 @@
+{%
+  dev = true
+
+if dev
+    imagePath = "img/"
+else
+    var imagePath = ""
+
+%}

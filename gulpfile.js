@@ -39,7 +39,7 @@ function getTask(task) {
 
 gulp.task('compress:images', getTask('images'));
 gulp.task('compile:sass', getTask('sass'));
-gulp.task('compile:jade', getTask('jade'));
+gulp.task('compile:nunjucks', getTask('nunjucks'));
 
 gulp.task('askName', getTask('askName'));
 gulp.task('getTemplate', ['askName'], getTask('getTemplate'));
@@ -58,7 +58,7 @@ gulp.task('getLivePort', ['getEdm','getPort'], getTask('getLivePort'));
 */
 gulp.task('init', ['getEdm', 'getPort', 'getLivePort'], function() {
     gulp.run('compile:sass');
-    gulp.run('compile:jade');
+    gulp.run('compile:nunjucks');
     gulp.run('compress:images');
 });
 
